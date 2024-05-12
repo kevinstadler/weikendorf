@@ -1,0 +1,5 @@
+[weikendorf]
+soundfiles_pro_gruppe=2
+# in sekunden
+pause_nach_soundfile=1
+pause_nach_gruppe=5

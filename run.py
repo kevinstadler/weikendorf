@@ -45,7 +45,7 @@ GPIO.add_event_detect(sensor_pin, GPIO.BOTH, callback=sensorled)#, bouncetime=50
 leds = [sensor_led, sound_led, usb_led]
 
 def dim(led):
-    led.value = .005
+    led.value = .02
 
 for led in leds:
     dim(led)
@@ -161,12 +161,12 @@ try:
                         logging.info("      - already exists, skipping")
                         sound_led.blink(.1, .3, 0, 0, 2, False)
 
-                    if os.path.isfile("/mnt/config.txt"):
-                        shutil.copyfile("/mnt/config.txt", f"{localdir}/config.txt")
-
                     usb_led.off()
                     pygame.time.wait(500)
 
+                if os.path.isfile("/mnt/config.txt"):
+                    logger.info("cnfg,copy")
+                    shutil.copyfile("/mnt/config.txt", f"{localdir}/config.txt")
 
                 logging.debug("Unmounting " + disk)
                 usb_led.blink(2, 2, 0, 1, 1, False)
